@@ -3,32 +3,46 @@ using System.Diagnostics;
 
 class Checker
 {
-    static bool vitalsAreOk(float bpm, float spo2, float respRate) {
-        if(bpm < 70 || bpm > 150) {
-            return false;
-        } else if(spo2 < 90) {
-            return false;
-        } else if(respRate < 30 || respRate > 95) {
-            return false;
+    static bool bpmchecker(float bpm)
+    {
+        if (bpm < 70)
+            Console.WriteLine("bpm is less");
+        if(bpm>150)
+            Console.WriteLine("bpm is high");
+        else
+            Console.WriteLine("bpm is normal");
+    }
+    static bool spo2checker(float spo2)
+    {
+        if(spo2<90)
+            Console.WriteLine("spo2 level is low");
+        else
+            Console.WriteLine("spo2 level is normal");
+
+    }
+    static bool respratechecker(float respRate)
+    {
+        if (respRate < 30)
+            Console.WriteLine("respiration rate is less");
+        if (bpm > 95)
+            Console.WriteLine("respiration rate is high");
+        else
+            Console.WriteLine("respiration rate is normal");
+    }
+
+    public delegate void CheckVitals(float value);
+    public class Checker
+    {
+        CheckVitals vitals;
+        public Checker(CheckVitals vitals)
+        {
+            this.vitals = vitals;
         }
-        return true;
-    }
-    static void ExpectTrue(bool expression) {
-        if(!expression) {
-            Console.WriteLine("Expected true, but got false");
-            Environment.Exit(1);
+        public void CheckVital(float value)
+        {
+            this.vitals.Invoke(value);
         }
     }
-    static void ExpectFalse(bool expression) {
-        if(expression) {
-            Console.WriteLine("Expected false, but got true");
-            Environment.Exit(1);
-        }
-    }
-    static int Main() {
-        ExpectTrue(vitalsAreOk(100, 95, 60));
-        ExpectFalse(vitalsAreOk(40, 91, 92));
-        Console.WriteLine("All ok");
-        return 0;
-    }
+
+   
 }
