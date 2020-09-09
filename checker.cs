@@ -43,6 +43,23 @@ class Checker
             this.vitals.Invoke(value);
         }
     }
+    class Program
+    {
+        static CheckBPM checkBPM = new CheckBPM();
+        static CheckSpo2 checkSpo2 = new CheckSpo2();
+        static CheckRespRate checkRespRate = new CheckRespRate();
+        static void Main(string[] args)
+        {
+            Checker checkVitalBpm = new Checker(new CheckVitals(checkBPM.bpmchecker));
+            checkVitalBpm.CheckVital(55);
 
-   
+            Checker checkVitalSpo2 = new Checker(new CheckVitals(checkSpo2.spo2checker));
+            checkVitalSpo2.CheckVital(99);
+
+            Checker checkVitalRespRate = new Checker(new CheckVitals(checkRespRate.respratechecker));
+            checkVitalRespRate.CheckVital(62);
+        }
+    }
+
+
 }
