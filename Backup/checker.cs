@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Checker
+namespace Checker1
 {
 
-    public class vitalcheck
+    public class bpmcheck
     {
         internal void bpmchecker(float bpm)
         {
             if (bpm < 70)
-                Console.WriteLine("bpm is low");
+                Console.WriteLine("bpm is less");
             if (bpm > 150)
                 Console.WriteLine("bpm is high");
             else
                 Console.WriteLine("bpm is normal");
 
         }
-
-
+    }
+    public class spo2check
+    {
         internal void spo2checker(float spo2)
         {
             if (spo2 < 90)
@@ -29,18 +30,19 @@ namespace Checker
                 Console.WriteLine("spo2 level is normal");
 
         }
-
+    }
+    public class respratecheck
+    {
         internal void respratechecker(float respRate)
         {
             if (respRate < 30)
-                Console.WriteLine("respiration rate is low");
+                Console.WriteLine("respiration rate is less");
             if (respRate > 95)
                 Console.WriteLine("respiration rate is high");
             else
                 Console.WriteLine("respiration rate is normal");
         }
     }
-    
     public delegate void CheckVitals(float value);
     public class Checker
     {
@@ -56,9 +58,9 @@ namespace Checker
     }
     class Program
     {
-        static vitalcheck checkBPM = new vitalcheck();
-        static vitalcheck checkSpo2 = new vitalcheck();
-        static vitalcheck checkRespRate = new vitalcheck();
+        static bpmcheck checkBPM = new bpmcheck();
+        static spo2check checkSpo2 = new spo2check();
+        static respratecheck checkRespRate = new respratecheck();
         static void Main(string[] args)
         {
             Checker checkVitalBpm = new Checker(new CheckVitals(checkBPM.bpmchecker));
