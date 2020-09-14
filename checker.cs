@@ -56,9 +56,9 @@ namespace Checker
     }
     class Program
     {
-        static bpmcheck checkBPM = new vitalcheck();
-        static spo2check checkSpo2 = new vitalcheck();
-        static respratecheck checkRespRate = new vitalcheck();
+        static vitalcheck checkBPM = new vitalcheck();
+        static vitalcheck checkSpo2 = new vitalcheck();
+        static vitalcheck checkRespRate = new vitalcheck();
         static void Main(string[] args)
         {
             Checker checkVitalBpm = new Checker(new CheckVitals(checkBPM.bpmchecker));
